@@ -6,7 +6,7 @@ This application focuses on improving my skills on several topics: progressive w
 
 A little trivia: Did you know that 水 (みず) means 'water' in Japanese?
 
-The rest of the documentation is coming soon!
+Check out the application by [clicking me](https://mizu.vercel.app).
 
 ## Motivation
 
@@ -53,9 +53,14 @@ yarn install --frozen-lockfile
 yarn start
 ```
 
-You may look at tests by using `yarn test`. It will run the test suite accordingly.
+You may look at tests by using `yarn test`. It will run the test suite accordingly. After that, you're done and free to hack around!
 
-After that, you're done and free to hack around!
+Just in case you want to see the production version without having either Node.js or Yarn nor seeing the live version, you may use Docker as well!
+
+```bash
+docker build . -t mizu:latest
+docker run -d -p 3000:80 mizu:latest
+```
 
 ## Credits
 
