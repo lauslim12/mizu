@@ -1,0 +1,34 @@
+name: React
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  react:
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16.15.0
+          cache: 'yarn'
+
+      - name: Install dependencies
+        run: yarn --frozen-lockfile
+
+      - name: Code formattting, TypeScript check, ESLint check
+        run: yarn lint
+
+      - name: Circular check
+        run: yarn circular-check
+
+      - name: Unit tests
+        run: yarn test --coverage
+
+      - name: Build application
+        run: yarn build

@@ -1,0 +1,43 @@
+name: Vercel and Lighthouse
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+jobs:
+  vercel:
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Deploy production version to Vercel
+        uses: amondnet/vercel-action@v20
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+          vercel-args: '--prod'
+
+  lighthouse:
+    runs-on: ubuntu-20.04
+    needs: vercel
+
+    steps:
+      - name: Analyze website with Lighthouse CI
+        id: lighthouseCheck
+        uses: foo-software/lighthouse-check-action@master
+        with:
+          urls: 'https://mizu.vercel.app'
+          device: 'all'
+
+      # - name: Verify Lighthouse check results
+      #   uses: foo-software/lighthouse-check-status-action@master
+      #   with:
+      #     lighthouseCheckResults: ${{ steps.lighthouseCheck.outputs.lighthouseCheckResults }}
+      #     minAccessibilityScore: '95'
+      #     minBestPracticesScore: '95'
+      #     minPerformanceScore: '95'
+      #     minSeoScore: '95'

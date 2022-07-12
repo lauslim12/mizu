@@ -33,10 +33,10 @@ This is purely a front-end application which is powered by your browser only.
 Every React component in this repository (stored in both `pages` and `components`), with the exception of `_shared` (which is used to store singletons of reusable components), have the following structure:
 
 - Component is named according to its responsibility / corresponding entity.
+- `Component.test.tsx` as the unit-test for the related component.
+- `Component.tsx` to place the component's 'blocks'.
 - `index.tsx` as the default export.
-- `ComponentName.tsx` to place the component's 'blocks'.
 - `styles.tsx` as the styling.
-- `index.test.tsx` as the unit-test for the related component.
 
 ## Requirements
 
@@ -52,6 +52,8 @@ cd mizu
 yarn install --frozen-lockfile
 yarn start
 ```
+
+You may look at tests by using `yarn test`. It will run the test suite accordingly.
 
 After that, you're done and free to hack around!
 
