@@ -102,7 +102,11 @@ function App() {
         </Information>
 
         <Buttons>
-          <DrinkButton onClick={handleClick} data-testid="drinkButton">
+          <DrinkButton
+            aria-label="Drink"
+            onClick={handleClick}
+            data-testid="drinkButton"
+          >
             <GlassIcon />
           </DrinkButton>
         </Buttons>

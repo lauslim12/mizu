@@ -75,17 +75,17 @@ const Settings = () => {
       <Section visible={overlayVisibility}>
         <List>
           <ItemContainer>
-            <Item onClick={handleThemeChange}>
+            <Item aria-label="Change theme" onClick={handleThemeChange}>
               <span>01</span>{' '}
               {t('settings.theme', { theme: state.config.theme })}
             </Item>
 
-            <Item onClick={handleLanguageChange}>
+            <Item aria-label="Change language" onClick={handleLanguageChange}>
               <span>02</span>{' '}
               {t('settings.language', { language: state.config.language })}
             </Item>
 
-            <Item onClick={handleFontChange}>
+            <Item aria-label="Change font" onClick={handleFontChange}>
               <span>03</span> {t('settings.font', { font: state.config.font })}
             </Item>
 
@@ -94,18 +94,22 @@ const Settings = () => {
               href="https://github.com/lauslim12/mizu"
               rel="noopener noreferrer"
               target="_blank"
+              aria-label="Access GitHub"
             >
               <span>04</span> {t('settings.github')}
             </Item>
 
-            <Item onClick={handleResetApp}>
+            <Item aria-label="Reset settings" onClick={handleResetApp}>
               <span>05</span> {t('settings.reset')}
             </Item>
           </ItemContainer>
         </List>
       </Section>
 
-      <SettingsButton onClick={() => setOverlayVisibility(!overlayVisibility)}>
+      <SettingsButton
+        aria-label="Settings"
+        onClick={() => setOverlayVisibility(!overlayVisibility)}
+      >
         <SettingsGearIcon />
       </SettingsButton>
     </>
