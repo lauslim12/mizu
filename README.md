@@ -6,7 +6,7 @@ This application focuses on improving my skills on several topics: progressive w
 
 A little trivia: Did you know that 水 (みず) means 'water' in Japanese?
 
-Check out the application by [clicking me](https://mizu.vercel.app).
+Check out the application by [clicking me](https://mizu.vercel.app). This application is still in beta, hence the version `0.0.0`, so there may be some changes (or not).
 
 ## Motivation
 
@@ -22,11 +22,11 @@ I realized that most 'water-reminder' applications are either proprietary, locke
 
 This is purely a front-end application which is powered by your browser only.
 
-- React as the main driver
-- Styled Components as the design choice
-- Local Storage as the makeshift database
-- Vercel for deployment
-- GitHub Actions to ensure Continuous Integration and Delivery
+- React as the main driver.
+- Styled Components as the design choice.
+- Local Storage as the makeshift database.
+- Vercel for deployment.
+- GitHub Actions to ensure Continuous Integration and Delivery.
 
 ## Structure
 
@@ -36,7 +36,7 @@ Every React component in this repository (stored in both `pages` and `components
 - `Component.test.tsx` as the unit-test for the related component.
 - `Component.tsx` to place the component's 'blocks'.
 - `index.tsx` as the default export.
-- `styles.tsx` as the styling.
+- `styles.tsx` as the styling with `styled-components`.
 
 ## Requirements
 

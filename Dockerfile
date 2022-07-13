@@ -1,10 +1,12 @@
-# First step: Use Node.js to download and install.
-FROM node:16.15.0 AS app
+##
+# First step: Use Node.js to download and install the dependencies required to build the application.
+##
+FROM node:16.15.0 AS builder
 
 # Set working directory.
 WORKDIR /app
 
-# Copy dependency locks.
+# Copy dependency locks for deterministic builds.
 COPY ./package.json ./yarn.lock ./
 
 # Get all of our dependencies.
@@ -16,20 +18,23 @@ COPY ./ ./
 # Build our application.
 RUN yarn build
 
-# Second step: Use `nginx` image to serve our React.
+##
+# Second step: Use `nginx` image to serve our React application. This is required
+# so that our React application can behave properly as a Single-Page Application.
+##
 FROM nginx:1.22.0-alpine AS production
 
 # Switch working directory to nginx's default place to store HTML files: `/usr/share/nginx/html`.
 WORKDIR /usr/share/nginx/html
 
-# Clear the folder.
+# Clear the folder, we have no need for the previous files.
 RUN rm -rf */
 
-# Copy our built React app.
-COPY --from=app /app/build .
+# Copy our built React app from the previous stage.
+COPY --from=builder /app/build .
 
-# Expose 80.
+# Expose 80, the normal port which accepts HTTP connections.
 EXPOSE 80
 
-# Run thin container.
+# Run the container, the usual nginx way.
 CMD ["nginx", "-g", "daemon off;"]

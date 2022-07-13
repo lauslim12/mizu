@@ -24,7 +24,7 @@ jobs:
       - name: Code formattting, TypeScript check, ESLint check
         run: yarn lint
 
-      - name: Circular check
+      - name: Circular dependency check
         run: yarn circular-check
 
       - name: Unit tests
