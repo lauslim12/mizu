@@ -7,7 +7,7 @@ import { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ThemeProvider } from 'styled-components';
 
-import { DrinkButton } from '../../components/_shared/Button';
+import { DrinkButton } from '../../components/Common/Button';
 import { GlassIcon } from '../../components/_shared/Icon';
 import { Text } from '../../components/_shared/Text';
 import { Settings } from '../../components/Settings';

@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 
 import { AppContext } from '../../utils/state';
 import { SettingsGearIcon } from '../_shared/Icon';
-import { SettingsButton } from './../_shared/Button';
+import { SettingsButton } from '../Common/Button';
 import { Item, ItemContainer, List, Overlay, Section } from './styles';
 
 /**
