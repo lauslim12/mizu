@@ -4,8 +4,8 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 
 import { App } from './pages/_app';
-import reportWebVitals from './reportWebVitals';
-import * as serviceWorkerRegistration from './serviceWorkerRegistration';
+import reportWebVitals from './report-web-vitals';
+import * as serviceWorkerRegistration from './service-worker-registration';
 import { AppContextProvider } from './utils/state';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
