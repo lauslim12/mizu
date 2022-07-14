@@ -6,7 +6,7 @@ This application focuses on improving my skills on several topics: progressive w
 
 A little trivia: Did you know that 水 (みず) means 'water' in Japanese?
 
-Check out the application by [clicking me](https://mizu.vercel.app). This application is still in beta, hence the version `0.0.0`, so there may be some changes (or not).
+Check out the application by [clicking me](https://mizu.vercel.app). You'll be redirected to the application.
 
 ## Motivation
 
@@ -15,7 +15,7 @@ I realized that most 'water-reminder' applications are either proprietary, locke
 ## Features
 
 - User should be able to press a button to tell the system that they have drunk a glass of water.
-- User should be able to see their intakes of water.
+- User should be able to see their intakes of water for today, and it shall reset tomorrow.
 - User can change the application theme, language, and font.
 
 ## Technologies
@@ -30,7 +30,7 @@ This is purely a front-end application which is powered by your browser only.
 
 ## Structure
 
-Every React component in this repository (stored in both `pages` and `components`), with the exception of `_shared` (which is used to store singletons of reusable components), have the following structure:
+Every React component in this repository (stored in both `pages` and `components`), with the exception of `Common` (which is used to store singletons of reusable components), has the following structure:
 
 - Component is named according to its responsibility / corresponding entity.
 - `Component.test.tsx` as the unit-test for the related component.
