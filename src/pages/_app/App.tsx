@@ -7,9 +7,9 @@ import { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ThemeProvider } from 'styled-components';
 
-import { DrinkButton } from '../../components/_shared/Button';
-import { GlassIcon } from '../../components/_shared/Icon';
-import { Text } from '../../components/_shared/Text';
+import { DrinkButton } from '../../components/Common/Button';
+import { GlassIcon } from '../../components/Common/Icon';
+import { Text } from '../../components/Common/Text';
 import { Settings } from '../../components/Settings';
 import { AppContext } from '../../utils/state';
 import { GlobalStyle, theme } from '../../utils/styled-settings';

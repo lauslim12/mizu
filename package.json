@@ -1,6 +1,6 @@
 {
   "name": "mizu",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Mizu - water reminder PWA",
   "private": true,
   "author": "Nicholas",
@@ -99,9 +99,9 @@
     "coveragePathIgnorePatterns": [
       "src/utils",
       "src/index.tsx",
-      "src/reportWebVitals.ts",
+      "src/report-web-vitals.ts",
       "service-worker.ts",
-      "serviceWorkerRegistration.ts",
+      "service-worker-registration.ts",
       "setupTests.ts"
     ],
     "coverageThreshold": {
