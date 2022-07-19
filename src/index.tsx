@@ -2,17 +2,33 @@ import './utils/i18n';
 
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { Provider } from 'react-redux';
 
+import { hydrate as settingsHydrate } from './components/Settings/slice';
 import { App } from './pages/_app';
+import { hydrate as drinksHydrate } from './pages/_app/slice';
 import reportWebVitals from './report-web-vitals';
 import * as serviceWorkerRegistration from './service-worker-registration';
-import { AppContextProvider } from './utils/state';
+import store from './utils/store';
 
+// Fetches our configurations and data from the local storage.
+const configureStore = () => {
+  const localData = localStorage.getItem('mizu');
+  if (localData) {
+    const parsedLocalData = JSON.parse(localData);
+    store.dispatch(settingsHydrate(parsedLocalData.config));
+    store.dispatch(drinksHydrate(parsedLocalData.drinks));
+  }
+
+  return store;
+};
+
+// Hydrates the whole application.
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <AppContextProvider>
+    <Provider store={configureStore()}>
       <App />
-    </AppContextProvider>
+    </Provider>
   </React.StrictMode>
 );
 

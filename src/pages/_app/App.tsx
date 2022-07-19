@@ -3,7 +3,7 @@ import '@fontsource/inconsolata/700.css';
 import '@fontsource/lato/400.css';
 import '@fontsource/lato/700.css';
 
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ThemeProvider } from 'styled-components';
 
@@ -11,8 +11,9 @@ import { DrinkButton } from '../../components/Common/Button';
 import { GlassIcon } from '../../components/Common/Icon';
 import { Text } from '../../components/Common/Text';
 import { Settings } from '../../components/Settings';
-import { AppContext } from '../../utils/state';
+import { useAppDispatch, useAppSelector } from '../../utils/hooks';
 import { GlobalStyle, theme } from '../../utils/styled-settings';
+import { addDrink, incrementDrink } from './slice';
 import {
   Buttons,
   Counter,
@@ -29,40 +30,43 @@ import {
  * @returns Application instance.
  */
 function App() {
-  const { state, dispatch } = useContext(AppContext);
+  const settings = useAppSelector((state) => state.settings);
+  const drinks = useAppSelector((state) => state.drinks);
+  const dispatch = useAppDispatch();
+
   const { t } = useTranslation();
-  const [drinks, setDrinks] = useState(0);
+  const [glasses, setGlasses] = useState(0);
   const [time, setTime] = useState('');
 
   const handleClick = () => {
-    const date = new Date().toDateString();
-    const drink = state.drinks.find((drink) => drink.time === date);
+    const time = new Date().toDateString();
+    const drink = drinks.find((drink) => drink.time === time);
     if (drink) {
-      dispatch({ type: 'INCREMENT_DRINK', payload: date });
+      dispatch(incrementDrink({ time }));
       return;
     }
 
-    dispatch({ type: 'ADD_DRINK', payload: { intake: 1, time: date } });
+    dispatch(addDrink({ intake: 1, time }));
   };
 
   useEffect(() => {
     const date = new Date().toDateString();
-    const drink = state.drinks.find((drink) => drink.time === date);
+    const drink = drinks.find((drink) => drink.time === date);
     if (drink) {
-      setDrinks(drink.intake);
+      setGlasses(drink.intake);
       return;
     }
 
-    setDrinks(0);
-  }, [state.drinks]);
+    setGlasses(0);
+  }, [drinks]);
 
   useEffect(() => {
     const timerUpdate = setInterval(() => {
       const now = new Date();
-      const date = now.toLocaleDateString(state.config.language, {
+      const date = now.toLocaleDateString(settings.language, {
         dateStyle: 'full',
       });
-      const time = now.toLocaleTimeString(state.config.language, {
+      const time = now.toLocaleTimeString(settings.language, {
         timeStyle: 'full',
       });
 
@@ -70,10 +74,10 @@ function App() {
     }, 1000);
 
     return () => clearInterval(timerUpdate);
-  }, [state.config.language]);
+  }, [settings.language]);
 
   return (
-    <ThemeProvider theme={theme(state.config.theme, state.config.font)}>
+    <ThemeProvider theme={theme(settings.theme, settings.font)}>
       <GlobalStyle />
 
       <Header>
@@ -88,13 +92,13 @@ function App() {
         <Information>
           <Counter>
             <Text $size="xxxl" data-testid="drinkCounter">
-              {drinks <= 8 ? (drinks / 8) * 100 : '>100'}
+              {glasses <= 8 ? (glasses / 8) * 100 : '>100'}
             </Text>
             <Text $size="xl">%</Text>
           </Counter>
 
           <Dynamic>
-            <Text $size="lg">{t('main.drink', { glasses: drinks })}</Text>
+            <Text $size="lg">{t('main.drink', { glasses })}</Text>
             <Text $size="xs" data-testid="clock">
               {time}
             </Text>
