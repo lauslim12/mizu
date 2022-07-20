@@ -16,7 +16,7 @@ const configureStore = () => {
   const localData = localStorage.getItem('mizu');
   if (localData) {
     const parsedLocalData = JSON.parse(localData);
-    store.dispatch(settingsHydrate(parsedLocalData.config));
+    store.dispatch(settingsHydrate(parsedLocalData.settings));
     store.dispatch(drinksHydrate(parsedLocalData.drinks));
   }
 

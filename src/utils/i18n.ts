@@ -72,7 +72,7 @@ languageDetector.addDetector({
     // is inferred as `any`. To prevent property access failures (catastrophic failures, for example
     // if `mizu` contains illegal values), we use the optional chaining to iteratively search for object keys,
     // and nullish coalescing operator to set the default value, if, for some reason, the search fails catastrophically.
-    return JSON.parse(data).config?.language ?? 'en';
+    return JSON.parse(data).settings?.language ?? 'en';
   },
 });
 
