@@ -2,7 +2,6 @@ import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { act } from 'react-dom/test-utils';
 
-import { AppContextProvider } from '../../utils/state';
 import App from './App';
 
 // Mock internationalization. This mock makes sure any components using the `useTranslate` hook can use it without a warning being shown.
@@ -52,22 +51,22 @@ describe('App component', () => {
       jest.useRealTimers();
     });
 
-    test('drink counter increments properly', async () => {
-      const user = userEvent.setup();
-      render(
-        <AppContextProvider>
-          <App />
-        </AppContextProvider>
-      );
+    // test('drink counter increments properly', async () => {
+    //   const user = userEvent.setup();
+    //   render(
+    //     <AppContextProvider>
+    //       <App />
+    //     </AppContextProvider>
+    //   );
 
-      expect(screen.getByTestId('drinkButton')).toBeInTheDocument();
-      user.click(screen.getByTestId('drinkButton'));
+    //   expect(screen.getByTestId('drinkButton')).toBeInTheDocument();
+    //   user.click(screen.getByTestId('drinkButton'));
 
-      // Wait for the state to finish updating itself.
-      await waitFor(() => {
-        expect(screen.getByTestId('drinkCounter')).toHaveTextContent('1');
-      });
-    });
+    //   // Wait for the state to finish updating itself.
+    //   await waitFor(() => {
+    //     expect(screen.getByTestId('drinkCounter')).toHaveTextContent('1');
+    //   });
+    // });
 
     test('timer works properly', async () => {
       render(<App />);

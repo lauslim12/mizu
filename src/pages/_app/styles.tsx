@@ -12,49 +12,35 @@ export const Buttons = styled.section`
 export const Counter = styled.div`
   display: flex;
   align-items: baseline;
+`;
 
-  & > p {
-    ${({ theme: { media } }) => media.largest} {
-      font-size: 30rem;
-    }
+export const Description = styled.p`
+  ${({ theme: { media } }) => media.ultra} {
+    font-size: 7.2rem;
+  }
 
-    ${({ theme: { media } }) => media.medium} {
-      font-size: 20rem;
-    }
+  ${({ theme: { media } }) => media.hd} {
+    font-size: 4.2rem;
+  }
 
-    ${({ theme: { media } }) => media.small} {
-      font-size: 12rem;
-    }
+  ${({ theme: { media } }) => media.extra} {
+    font-size: 3.6rem;
+  }
 
-    ${({ theme: { media } }) => media.smallest} {
-      font-size: 10rem;
-    }
+  ${({ theme: { media } }) => media.small} {
+    font-size: 2.8rem;
   }
 `;
 
 export const Dynamic = styled.div`
-  margin-top: -8rem;
+  margin-top: -7rem;
 
   display: flex;
   flex-direction: column;
   row-gap: 2rem;
 
-  ${({ theme: { media } }) => media.largest} {
+  ${({ theme: { media } }) => media.medium} {
     margin-top: 0;
-  }
-
-  & > p:first-child {
-    ${({ theme: { media } }) => media.largest} {
-      font-size: 7.2rem;
-    }
-
-    ${({ theme: { media } }) => media.extra} {
-      font-size: 3.6rem;
-    }
-
-    ${({ theme: { media } }) => media.small} {
-      font-size: 1.6rem;
-    }
   }
 `;
 
@@ -80,6 +66,42 @@ export const Information = styled.section`
   flex-direction: column;
   align-items: center;
   row-gap: 2rem;
+`;
+
+export const Number = styled.p`
+  ${({ theme: { media } }) => media.ultra} {
+    font-size: 42rem;
+  }
+
+  ${({ theme: { media } }) => media.hd} {
+    font-size: 30rem;
+  }
+
+  ${({ theme: { media } }) => media.medium} {
+    font-size: 24rem;
+  }
+
+  ${({ theme: { media } }) => media.small} {
+    font-size: 16rem;
+  }
+`;
+
+export const Percentage = styled.p`
+  ${({ theme: { media } }) => media.ultra} {
+    font-size: 5.2rem;
+  }
+
+  ${({ theme: { media } }) => media.hd} {
+    font-size: 4.2rem;
+  }
+
+  ${({ theme: { media } }) => media.extra} {
+    font-size: 3.6rem;
+  }
+
+  ${({ theme: { media } }) => media.small} {
+    font-size: 1.6rem;
+  }
 `;
 
 export const Wrapper = styled.main`

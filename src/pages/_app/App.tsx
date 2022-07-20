@@ -17,10 +17,13 @@ import { addDrink, incrementDrink } from './slice';
 import {
   Buttons,
   Counter,
+  Description,
   Dynamic,
   Footer,
   Header,
   Information,
+  Number,
+  Percentage,
   Wrapper,
 } from './styles';
 
@@ -91,14 +94,14 @@ function App() {
       <Wrapper>
         <Information>
           <Counter>
-            <Text $size="xxxl" data-testid="drinkCounter">
+            <Number data-testid="drinkCounter">
               {glasses <= 8 ? (glasses / 8) * 100 : '>100'}
-            </Text>
-            <Text $size="xl">%</Text>
+            </Number>
+            <Percentage>%</Percentage>
           </Counter>
 
           <Dynamic>
-            <Text $size="lg">{t('main.drink', { glasses })}</Text>
+            <Description>{t('main.drink', { glasses })}</Description>
             <Text $size="xs" data-testid="clock">
               {time}
             </Text>
