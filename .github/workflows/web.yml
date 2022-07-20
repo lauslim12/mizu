@@ -28,7 +28,7 @@ jobs:
         run: yarn circular-check
 
       - name: Unit tests
-        run: yarn test --coverage
+        run: yarn test --coverage --verbose
 
       - name: Build application
         run: yarn build

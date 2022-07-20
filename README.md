@@ -53,14 +53,16 @@ yarn install --frozen-lockfile
 yarn start
 ```
 
-You may look at tests by using `yarn test`. It will run the test suite accordingly. After that, you're done and free to hack around!
-
 Just in case you want to see the production version without having either Node.js or Yarn nor seeing the live version, you may use Docker as well!
 
 ```bash
 docker build . -t mizu:latest
 docker run -d -p 3000:80 mizu:latest
 ```
+
+## Tests
+
+You may look at tests by using `yarn test`. It will run the test suite accordingly. To keep in mind, React Testing Library is used to perform integration tests, so implementation details and the like are not tested. If you look at the `package.json` file, you can see that I only tested the React components which users are probably going to experience / feel during their usage of this application.
 
 ## Credits
 

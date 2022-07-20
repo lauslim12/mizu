@@ -1,6 +1,6 @@
 {
   "name": "mizu",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Mizu - water reminder PWA",
   "private": true,
   "author": "Nicholas",
@@ -28,17 +28,18 @@
     "@fontsource/inconsolata": "^4.5.6",
     "@fontsource/lato": "^4.5.8",
     "@fontsource/noto-sans-jp": "^4.5.10",
+    "@reduxjs/toolkit": "^1.8.3",
     "i18next": "^21.8.13",
     "i18next-browser-languagedetector": "^6.1.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-i18next": "^11.18.0",
+    "react-redux": "^8.0.2",
     "styled-components": "^5.3.5"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^13.0.0",
-    "@testing-library/user-event": "^14.2.1",
     "@types/jest": "^27.4.0",
     "@types/node": "^17.0.10",
     "@types/react": "^18.0.0",
@@ -96,20 +97,17 @@
     "styled-components": "^5"
   },
   "jest": {
-    "coveragePathIgnorePatterns": [
-      "src/utils",
-      "src/index.tsx",
-      "src/report-web-vitals.ts",
-      "service-worker.ts",
-      "service-worker-registration.ts",
-      "setupTests.ts"
+    "collectCoverageFrom": [
+      "src/components/Drinks/Drinks.tsx",
+      "src/components/Settings/Settings.tsx",
+      "src/pages/_app/App.tsx"
     ],
     "coverageThreshold": {
       "global": {
-        "statements": 55,
-        "branches": 55,
-        "functions": 55,
-        "lines": 55
+        "statements": 100,
+        "branches": 100,
+        "functions": 100,
+        "lines": 100
       }
     }
   }

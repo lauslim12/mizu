@@ -89,9 +89,11 @@ export const theme = (theme = 'original', font = 'Lato'): DefaultTheme => ({
 
   /**
    * Media queries, from largest to smallest in normal
-   * pixels: [1500px, 1200px, 1100px, 900px, 600px, 500px].
+   * pixels: [3810px, 1920px, 1500px, 1200px, 1100px, 900px, 600px, 500px].
    */
   media: {
+    ultra: '@media only screen and (max-width: 238.12em)',
+    hd: '@media only screen and (max-width: 120em)',
     largest: '@media only screen and (max-width: 93.75em)',
     extra: '@media only screen and (max-width: 75em)',
     large: '@media only screen and (max-width: 60.75em)',

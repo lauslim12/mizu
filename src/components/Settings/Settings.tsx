@@ -1,9 +1,16 @@
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { AppContext } from '../../utils/state';
+import { useAppDispatch, useAppSelector } from '../../utils/hooks';
 import { SettingsButton } from '../Common/Button';
 import { SettingsGearIcon } from '../Common/Icon';
+import { resetDrinks } from '../Drinks/slice';
+import {
+  changeFont,
+  changeLanguage,
+  changeTheme,
+  resetSettings,
+} from './slice';
 import { Item, ItemContainer, List, Overlay, Section } from './styles';
 
 /**
@@ -13,80 +20,79 @@ import { Item, ItemContainer, List, Overlay, Section } from './styles';
  * @returns Settings component.
  */
 const Settings = () => {
-  const { state, dispatch } = useContext(AppContext);
+  const state = useAppSelector((state) => state.settings);
+  const dispatch = useAppDispatch();
   const [overlayVisibility, setOverlayVisibility] = useState(false);
   const { t, i18n } = useTranslation();
 
   const handleThemeChange = () => {
-    if (state.config.theme === 'original') {
-      dispatch({ type: 'CHANGE_THEME', payload: 'dark' });
+    if (state.theme === 'original') {
+      dispatch(changeTheme('dark'));
       return;
     }
 
-    if (state.config.theme === 'dark') {
-      dispatch({ type: 'CHANGE_THEME', payload: 'light' });
+    if (state.theme === 'dark') {
+      dispatch(changeTheme('light'));
       return;
     }
 
-    dispatch({ type: 'CHANGE_THEME', payload: 'original' });
+    dispatch(changeTheme('original'));
   };
 
   const handleLanguageChange = () => {
-    if (state.config.language === 'en') {
+    if (state.language === 'en') {
       i18n.changeLanguage('id');
-      dispatch({ type: 'CHANGE_LANGUAGE', payload: 'id' });
+      dispatch(changeLanguage('id'));
       return;
     }
 
-    if (state.config.language === 'id') {
+    if (state.language === 'id') {
       i18n.changeLanguage('ja');
-      dispatch({ type: 'CHANGE_LANGUAGE', payload: 'ja' });
+      dispatch(changeLanguage('ja'));
       return;
     }
 
     i18n.changeLanguage('en');
-    dispatch({ type: 'CHANGE_LANGUAGE', payload: 'en' });
+    dispatch(changeLanguage('en'));
   };
 
   const handleFontChange = () => {
-    if (state.config.font === 'Lato') {
-      dispatch({ type: 'CHANGE_FONT', payload: 'Inconsolata' });
+    if (state.font === 'Lato') {
+      dispatch(changeFont('Inconsolata'));
       return;
     }
 
-    if (state.config.font === 'Inconsolata') {
-      dispatch({ type: 'CHANGE_FONT', payload: 'Noto Sans JP' });
+    if (state.font === 'Inconsolata') {
+      dispatch(changeFont('Noto Sans JP'));
       return;
     }
 
-    if (state.config.font === 'Noto Sans JP') {
-      dispatch({ type: 'CHANGE_FONT', payload: 'Lato' });
-      return;
-    }
+    dispatch(changeFont('Lato'));
   };
 
   const handleResetApp = () => {
-    dispatch({ type: 'RESET_STATE', payload: null });
+    i18n.changeLanguage('en');
+    dispatch(resetSettings());
+    dispatch(resetDrinks());
   };
 
   return (
     <>
-      <Overlay data-testid="overlay" visible={overlayVisibility} />
+      <Overlay role="dialog" visible={overlayVisibility} />
       <Section visible={overlayVisibility}>
         <List>
           <ItemContainer>
             <Item aria-label="Change theme" onClick={handleThemeChange}>
-              <span>01</span>{' '}
-              {t('settings.theme', { theme: state.config.theme })}
+              <span>01</span> {t('settings.theme', { theme: state.theme })}
             </Item>
 
             <Item aria-label="Change language" onClick={handleLanguageChange}>
               <span>02</span>{' '}
-              {t('settings.language', { language: state.config.language })}
+              {t('settings.language', { language: state.language })}
             </Item>
 
             <Item aria-label="Change font" onClick={handleFontChange}>
-              <span>03</span> {t('settings.font', { font: state.config.font })}
+              <span>03</span> {t('settings.font', { font: state.font })}
             </Item>
 
             <Item

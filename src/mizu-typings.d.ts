@@ -24,6 +24,8 @@ declare module 'styled-components' {
     font: string;
 
     media: {
+      ultra: string;
+      hd: string;
       largest: string;
       extra: string;
       large: string;
