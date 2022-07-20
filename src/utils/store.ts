@@ -18,19 +18,19 @@ const store = configureStore({
 /**
  * We subscribe to the store. However, we try to debounce requests to
  * prevent someone spamming on his/her local storage saves. The average
- * delay is 500ms.
+ * delay is 250ms.
  */
 store.subscribe(() => {
   setTimeout(() => {
     localStorage.setItem('mizu', JSON.stringify(store.getState()));
-  }, 500);
+  }, 250);
 });
 
 /**
  * Several types to be inferred, more specifically; to infer the Redux
  * store so it can be used 'type-safely'.
  */
-type Store = typeof store; // If `store` is made into a closure function, then `ReturnType<typeof store>`.
+export type Store = typeof store; // If `store` is made into a closure function, then `ReturnType<typeof store>`.
 export type RootState = ReturnType<Store['getState']>;
 export type AppDispatch = Store['dispatch'];
 
