@@ -2,7 +2,7 @@ import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { act } from 'react-dom/test-utils';
 
-import App from './App';
+import Drinks from './Drinks';
 
 // Mock internationalization. This mock makes sure any components using the `useTranslate` hook can use it without a warning being shown.
 jest.mock('react-i18next', () => ({
@@ -19,23 +19,23 @@ jest.mock('react-i18next', () => ({
 describe('App component', () => {
   describe('smoke tests', () => {
     test('renders without crashing', () => {
-      render(<App />);
+      render(<Drinks />);
     });
 
     test('renders the header properly', () => {
-      render(<App />);
+      render(<Drinks />);
 
       expect(screen.getByText('水')).toBeInTheDocument();
     });
 
     test('renders the main page properly', () => {
-      render(<App />);
+      render(<Drinks />);
 
       expect(screen.getByText('0')).toBeInTheDocument();
     });
 
     test('renders the footer properly', () => {
-      render(<App />);
+      render(<Drinks />);
 
       expect(screen.getByText(/nicholas/i)).toBeInTheDocument();
     });
@@ -55,7 +55,7 @@ describe('App component', () => {
     //   const user = userEvent.setup();
     //   render(
     //     <AppContextProvider>
-    //       <App />
+    //       <Drinks />
     //     </AppContextProvider>
     //   );
 
@@ -69,7 +69,7 @@ describe('App component', () => {
     // });
 
     test('timer works properly', async () => {
-      render(<App />);
+      render(<Drinks />);
 
       // Ensures it renders properly and wait several seconds.
       expect(screen.getByTestId('clock')).toBeInTheDocument();
