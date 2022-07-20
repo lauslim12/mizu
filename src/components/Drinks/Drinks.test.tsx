@@ -1,43 +1,13 @@
-import { render, screen, waitFor } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+import { fireEvent, screen } from '@testing-library/react';
 import { act } from 'react-dom/test-utils';
 
+import { renderWithProviders } from '../../utils/test-utils';
 import Drinks from './Drinks';
 
-// Mock internationalization. This mock makes sure any components using the `useTranslate` hook can use it without a warning being shown.
-jest.mock('react-i18next', () => ({
-  useTranslation: () => {
-    return {
-      t: (str: string) => str,
-      i18n: {
-        changeLanguage: () => new Promise(() => {}),
-      },
-    };
-  },
-}));
-
-describe('App component', () => {
+describe('<Drinks />', () => {
   describe('smoke tests', () => {
     test('renders without crashing', () => {
-      render(<Drinks />);
-    });
-
-    test('renders the header properly', () => {
-      render(<Drinks />);
-
-      expect(screen.getByText('水')).toBeInTheDocument();
-    });
-
-    test('renders the main page properly', () => {
-      render(<Drinks />);
-
-      expect(screen.getByText('0')).toBeInTheDocument();
-    });
-
-    test('renders the footer properly', () => {
-      render(<Drinks />);
-
-      expect(screen.getByText(/nicholas/i)).toBeInTheDocument();
+      renderWithProviders(<Drinks />);
     });
   });
 
@@ -51,25 +21,37 @@ describe('App component', () => {
       jest.useRealTimers();
     });
 
-    // test('drink counter increments properly', async () => {
-    //   const user = userEvent.setup();
-    //   render(
-    //     <AppContextProvider>
-    //       <Drinks />
-    //     </AppContextProvider>
-    //   );
+    test('ensures drink counter increments properly', async () => {
+      renderWithProviders(<Drinks />);
 
-    //   expect(screen.getByTestId('drinkButton')).toBeInTheDocument();
-    //   user.click(screen.getByTestId('drinkButton'));
+      // Expect that the button is in the document.
+      expect(screen.getByRole('button')).toBeInTheDocument();
+      fireEvent.click(screen.getByRole('button'));
 
-    //   // Wait for the state to finish updating itself.
-    //   await waitFor(() => {
-    //     expect(screen.getByTestId('drinkCounter')).toHaveTextContent('1');
-    //   });
-    // });
+      // Wait for the state to finish updating itself.
+      expect(await screen.findByText('12.5')).toBeInTheDocument();
 
-    test('timer works properly', async () => {
-      render(<Drinks />);
+      // Try to click the button again, this time to ensure it increments properly.
+      fireEvent.click(screen.getByRole('button'));
+
+      // Wait for the state to finish updating itself.
+      expect(await screen.findByText('25')).toBeInTheDocument();
+
+      // Click it seven more times to check if it renders '>100'.
+      fireEvent.click(screen.getByRole('button'));
+      fireEvent.click(screen.getByRole('button'));
+      fireEvent.click(screen.getByRole('button'));
+      fireEvent.click(screen.getByRole('button'));
+      fireEvent.click(screen.getByRole('button'));
+      fireEvent.click(screen.getByRole('button'));
+      fireEvent.click(screen.getByRole('button'));
+
+      // Wait for the state to finish updating itself.
+      expect(await screen.findByText('>100')).toBeInTheDocument();
+    });
+
+    test('ensures timer works properly', async () => {
+      renderWithProviders(<Drinks />);
 
       // Ensures it renders properly and wait several seconds.
       expect(screen.getByTestId('clock')).toBeInTheDocument();
@@ -80,9 +62,8 @@ describe('App component', () => {
         jest.advanceTimersByTime(2000);
       });
 
-      await waitFor(() => {
-        expect(screen.getByTestId('clock')).toHaveTextContent('02');
-      });
+      // Ensures timer has moved to '02'.
+      expect(await screen.findByTestId('clock')).toHaveTextContent('02');
     });
   });
 });

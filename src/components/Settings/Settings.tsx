@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useAppDispatch, useAppSelector } from '../../utils/hooks';
 import { SettingsButton } from '../Common/Button';
 import { SettingsGearIcon } from '../Common/Icon';
+import { resetDrinks } from '../Drinks/slice';
 import {
   changeFont,
   changeLanguage,
@@ -70,12 +71,14 @@ const Settings = () => {
   };
 
   const handleResetApp = () => {
+    i18n.changeLanguage('en');
     dispatch(resetSettings());
+    dispatch(resetDrinks());
   };
 
   return (
     <>
-      <Overlay data-testid="overlay" visible={overlayVisibility} />
+      <Overlay role="dialog" visible={overlayVisibility} />
       <Section visible={overlayVisibility}>
         <List>
           <ItemContainer>

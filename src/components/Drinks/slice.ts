@@ -55,14 +55,15 @@ export const drinkSlice = createSlice({
     /**
      * Resets the whole Redux store.
      */
-    resetSettings: () => [],
+    resetDrinks: () => [],
   },
 });
 
 /**
  * Export all reducer function to be placed inside our store.
  */
-export const { addDrink, hydrate, incrementDrink } = drinkSlice.actions;
+export const { addDrink, hydrate, incrementDrink, resetDrinks } =
+  drinkSlice.actions;
 
 /**
  * Default export in order to use it as a reducer / dispatch.

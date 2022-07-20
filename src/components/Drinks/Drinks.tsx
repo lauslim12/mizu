@@ -77,9 +77,7 @@ const Drinks = () => {
     <>
       <Information>
         <Counter>
-          <Number data-testid="drinkCounter">
-            {glasses <= 8 ? (glasses / 8) * 100 : '>100'}
-          </Number>
+          <Number>{glasses <= 8 ? (glasses / 8) * 100 : '>100'}</Number>
           <Percentage>%</Percentage>
         </Counter>
 
@@ -92,11 +90,7 @@ const Drinks = () => {
       </Information>
 
       <Buttons>
-        <DrinkButton
-          aria-label="Drink"
-          onClick={handleClick}
-          data-testid="drinkButton"
-        >
+        <DrinkButton aria-label="Drink" onClick={handleClick}>
           <GlassIcon />
         </DrinkButton>
       </Buttons>
