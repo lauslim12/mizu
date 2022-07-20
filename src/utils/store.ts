@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 
+import drinkReducer from '../components/Drinks/slice';
 import settingsReducer from '../components/Settings/slice';
-import drinkReducer from '../pages/_app/slice';
 
 /**
  * Redux store to store all global states inside the application. We store

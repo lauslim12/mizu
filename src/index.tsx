@@ -4,9 +4,9 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 
+import { hydrate as drinksHydrate } from './components/Drinks/slice';
 import { hydrate as settingsHydrate } from './components/Settings/slice';
 import { App } from './pages/_app';
-import { hydrate as drinksHydrate } from './pages/_app/slice';
 import reportWebVitals from './report-web-vitals';
 import * as serviceWorkerRegistration from './service-worker-registration';
 import store from './utils/store';
